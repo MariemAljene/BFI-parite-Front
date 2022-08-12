@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="card mt-5" style="align-items: center;">
+        <h1> ➺ Gestion Compte</h1>
+      </div>
+    
+      <div class="card mt-5" style="padding: 20px;">
+        <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+          <div class="form-group">
+              <label for="idCompte">idCompte :</label>
+              <input type="number" #idCompte (ngModel)="idCompte" name="idCompte" id="idCompte" class="form-control" placeholder="idCompte">
+            </div>
+          
+          <div class="form-group">
+            <label for="PlanCompte">PlanCompte :</label>
+            <input type="number" #PlanCompte (ngModel)="PlanCompte" name="PlanCompte" id="PlanCompte" class="form-control"
+              placeholder="PlanCompte">
+          </div>
+          <div class="form-group">
+            <label for="Email">Email :</label>
+            <input type="text" #Email (ngModel)="Email" name="Email" id="Email" class="form-control"
+              placeholder="Email">
+          </div>
+                 
+          
+          <div class="form-group">
+            <input type="submit" value="Register" class="btn btn-sm btn-outline-secondary w-100">
+          </div>
+        </form>
+      </div>
+</div>  

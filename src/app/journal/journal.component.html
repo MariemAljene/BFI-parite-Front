@@ -1,0 +1,115 @@
+<div class="container">
+  <div class="card mt-5" style="align-items: center;">
+    <h1> ➺ Gestion Journal</h1>
+  </div>
+  
+    <div class="card mt-5" style="padding: 20px;">
+      <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+        <div class="form-group">
+            <label for="idJournal">idJournal :</label>
+            <input type="number" #idJournal (ngModel)="idJournal" name="idJournal" id="idJournal" class="form-control" placeholder="idJournal">
+          </div>
+          
+        <div class="form-group">
+          <label for="libelle">libelle :</label>
+          <input type="text" #libelle (ngModel)="libelle" name="libelle" id="libelle" class="form-control"
+            placeholder="libelle">
+        </div>
+               
+        <div class="form-group">
+            <label for="debit">debit :</label>
+            <input type="number" #debit (ngModel)="debit" name="debit" id="debit" class="form-control"
+              placeholder="debit">
+          </div>
+          <div class="form-group">
+            <label for="credit">credit :</label>
+            <input type="number" #credit (ngModel)="credit" name="credit" id="credit" class="form-control"
+              placeholder="credit">
+          </div>
+        <div class="form-group">
+          <input type="submit" value="Register" class="btn btn-sm btn-outline-secondary w-100">
+        </div>
+      </form>
+    </div>
+    <div class="mt-5">
+      <table  class="table table-bordered">
+        <thead>
+          <tr>
+            <th>idJournal</th>
+       
+            <th>DateTransaction</th>
+            <th>libelle </th>
+            <th>debit</th>
+            <th>credit</th>
+            <th> Balance </th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody class="tbody">
+          <tr *ngFor="let journal of journalDetails">
+            <td>{{journal.idJournal}}</td>
+          
+            <td>{{todayWithPipe}}</td>
+            <td>{{journal.libelle}}</td>
+            <td>{{journal.debit}}</td>
+            <td>{{journal.credit}}</td>
+            <td> {{journal.debit-journal.credit}}</td>
+            <td><button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                (click)="edit(journal)">✎</button></td>
+              
+                
+            <td> <button type="button" class="btn btn-sm btn-outline-secondary" (click)="deleteJournal(journal)">❌</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+
+ 
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update Journal</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #updateForm="ngForm" (ngSubmit)="updateJournal()">
+            <div class="form-group">
+              <label for="idJournal"> idJournal :</label>
+              <input type="number" disabled #idJournal [(ngModel)]="journalToUpdate.idJournal" name="idJournal" id="idJournal"
+                class="form-control" placeholder="idJournal">
+            </div>
+            <div class="form-group">
+              <label for="numCompte">numCompte :</label>
+              <input type="number "disabled #numCompte [(ngModel)]="journalToUpdate.numCompte" name="numCompte" id="numCompte" class="form-control"
+                placeholder="numCompte">
+            </div>
+            
+            <div class="form-group">
+              <label for="libelle">libelle :</label>
+              <input type="text" #libelle [(ngModel)]="journalToUpdate.libelle" name="libelle" id="libelle"
+                class="form-control" placeholder="libelle">
+            </div>
+            <div class="form-group">
+              <label for="debit">debit :</label>
+              <input type="number" #debit [(ngModel)]="journalToUpdate.debit" name="debit" id="debit"
+                class="form-control" placeholder="debit">
+            </div>
+            <div class="form-group">
+              <label for="credit">credit :</label>
+              <input type="number" #credit [(ngModel)]="journalToUpdate.credit" name="credit" id="credit"
+                class="form-control" placeholder="credit">
+            </div>
+            <div class="form-group">
+              <input type="submit" value="Update" class="btn btn-primary w-100">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>  
